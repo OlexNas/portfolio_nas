@@ -24,6 +24,14 @@ export default function Explanation() {
             </span>
           </p>
         )}
+
+        {pathname === "/auth/login" && (
+            <p>
+                This login form uses the same modern technologies as our registration form. We use{" "}
+                <strong>React Hook Form</strong> for efficient form state management and{" "}
+                <strong>Yup</strong> for schema-based validation. Please enter your credentials to access your account.
+            </p>
+        )}
       </section>
     );
   }

@@ -17,27 +17,16 @@
   margin-top: 0.5rem;
 }
 
+
 .inputContainer input {
   flex: 1;
-  padding: 0.5rem;
+  padding: 1ßrem;
+  font-size: 1.5rem;
+  min-height: 3rem; 
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-/* Style for the password toggle button */
-.toggleButton {
-  margin-left: 0.5rem;
-  padding: 0.5rem;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.toggleButton:hover {
-  background-color: #e0e0e0;
-}
 
 .error {
   margin-left: 1rem;
@@ -56,6 +45,7 @@
   margin-top: 1.5rem;
   padding: 0.75rem;
   background-color: #0070f3;
+  min-height: 2rem; 
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -83,3 +73,52 @@
   font-size: 1.5rem;
   color: #333;
 }
+
+
+/* Container for the password input and toggle button */
+.passwordContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.passwordContainer input {
+  flex: 1;
+  width: 100%;
+  padding: 0.5rem;
+  min-height: 2rem; 
+  padding-right: -2.5rem;
+  font-size: 1.5rem;
+   /* Extra space for the icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.toggleButton {
+  background: transparent !important; /* Force a transparent background */
+  border: none;
+  appearance: none; /* Removes any browser default styling */
+  /* existing styles below... */
+  position: absolute;
+  right: 0.5rem;
+  top: 5%;
+  transform: translateY(-55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  color: black !important;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+
+
+
+
+

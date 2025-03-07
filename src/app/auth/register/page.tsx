@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "../authForm.module.css";
 
 // Define the validation schema using Yup
@@ -41,7 +42,7 @@ export default function Register() {
 
   const onSubmit = async (data: FormData) => {
     console.log("Register form submitted", data);
-    // Here you can call your API endpoint to process the registration
+    // Call your API endpoint to process the registration here
   };
 
   return (
@@ -70,7 +71,7 @@ export default function Register() {
           </div>
 
           <label htmlFor="password">Password</label>
-          <div className={styles.inputContainer}>
+          <div className={styles.passwordContainer}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -81,12 +82,12 @@ export default function Register() {
               className={styles.toggleButton}
               onClick={() => setShowPassword((prev) => !prev)}
             >
-              {showPassword ? "x" : "o"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
-            {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
-            )}
           </div>
+          {errors.password && (
+            <p className={styles.error}>{errors.password.message}</p>
+          )}
 
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Register"}
