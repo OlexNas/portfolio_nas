@@ -1,0 +1,85 @@
+.main {
+  padding: 2rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Style for input container to place error message to the right */
+.inputContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.inputContainer input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style for the password toggle button */
+.toggleButton {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.toggleButton:hover {
+  background-color: #e0e0e0;
+}
+
+.error {
+  margin-left: 1rem;
+  color: red;
+  white-space: nowrap;
+}
+
+/* General label styling nested under form to satisfy CSS Modules purity */
+.form label {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+/* Button styles */
+.form button {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background-color: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #005bb5;
+}
+
+/* Style for the explanation card */
+.explanation {
+  width: 60%;
+  margin: 0 auto 1.5rem auto; /* centers it horizontally and adds bottom margin */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.explanation p {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
