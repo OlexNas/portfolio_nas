@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "../authForm.module.css";
+import { useRouter } from "next/navigation";
 
 // Define the validation schema using Yup
 const schema = yup
@@ -39,10 +40,35 @@ export default function Register() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const [apiError, setApiError] = useState("");
 
   const onSubmit = async (data: FormData) => {
-    console.log("Register form submitted", data);
-    // Call your API endpoint to process the registration here
+    try {
+      // Replace the URL with your actual Flask API endpoint
+      const response = await fetch("http://localhost:4000/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        // Parse the error from the response if available
+        const errorData = await response.json();
+        console.log(errorData);
+        setApiError(errorData.error || "Registration failed. Please try again.");
+        console.error("Registration failed:", errorData.error);
+        return;
+      }
+
+      // If registration is successful, navigate to the login page.
+      router.push("/auth/login");
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setApiError("An unexpected error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -88,6 +114,8 @@ export default function Register() {
           {errors.password && (
             <p className={styles.error}>{errors.password.message}</p>
           )}
+
+          {apiError && <p className={styles.error}>{apiError}</p>}
 
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Register"}
