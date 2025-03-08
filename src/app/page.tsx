@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaProjectDiagram } from 'react-icons/fa';
 import styles from './page.module.css';
 
+
 export default function Home() {
   const projects = [
     { title: 'Authentication System', url: '/auth', description: 'A brief description of Project 1.' },

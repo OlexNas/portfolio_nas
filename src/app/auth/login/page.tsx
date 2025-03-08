@@ -6,15 +6,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 import styles from "../authForm.module.css";
+import { useAuth } from "@/context/AuthContext";
 
 // Define the validation schema using Yup
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .email("Invalid email address")
-      .required("Email is required"),
+    email: yup.string().email("Invalid email address").required("Email is required"),
     password: yup
       .string()
       .required("Password is required")
@@ -29,21 +28,29 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
+  const { login } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (data: FormData) => {
-    console.log("Login form submitted", data);
-    // Add logic to handle login (e.g., call your API)
+    try {
+      setErrorMessage("");
+      await login(data);
+      router.push("/auth");
+    } catch (error: unknown) {
+      let message = "Login failed. Please try again.";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      console.error("Login error:", message);
+      setErrorMessage(message);
+    }
   };
-
+  
   return (
     <>
       <Head>
@@ -52,7 +59,6 @@ export default function Login() {
       </Head>
       <main className={styles.main}>
         <h1>Login</h1>
-        
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">Email</label>
           <div className={styles.inputContainer}>
@@ -76,7 +82,7 @@ export default function Login() {
             </button>
           </div>
           {errors.password && <p className={styles.error}>{errors.password.message}</p>}
-
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Login"}
           </button>

@@ -3,11 +3,13 @@
 // import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./page.module.css"
+import { useAuth } from "@/context/AuthContext";
 
 
 
 export default function Explanation() {
     const pathname = usePathname();
+    const { isAuthenticated } = useAuth();
   
     return (
       <section className={styles.explanation}>
@@ -31,7 +33,21 @@ export default function Explanation() {
                 <strong>React Hook Form</strong> for efficient form state management and{" "}
                 <strong>Yup</strong> for schema-based validation. Please enter your credentials to access your account.
             </p>
+
         )}
+        { isAuthenticated === true ? (
+            <p>
+                This login form uses the same modern technologies as our registration form. We use{" "}
+                <strong>React Hook Form</strong> for efficient form state management and{" "}
+                <strong>Yup</strong> for schema-based validation. Please enter your credentials to access your account.
+            </p>
+        ) : (
+            <p>
+                First you need to register! :)
+            </p>
+        )}
+        
+        
       </section>
     );
   }

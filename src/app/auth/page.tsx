@@ -1,9 +1,14 @@
-// src/app/auth/page.tsx
+"use client";
+
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from './auth.module.css';
+import { useAuth } from '../../context/AuthContext'; // Adjust path as needed
 
 export default function AuthLanding() {
+  const { isAuthenticated } = useAuth();
+  
+
   return (
     <>
       <Head>
@@ -15,9 +20,10 @@ export default function AuthLanding() {
       </Head>
       <main className={styles.main}>
         <h1>Authentication System</h1>
-        <p>
+        {isAuthenticated && <p>You are already authenticated.</p>}
+       { !isAuthenticated && ( <p>
           Welcome to the authentication system. Please choose an option below to either register for a new account or log in to an existing one.
-        </p>
+        </p>)}
         <div className={styles.options}>
           <Link href="/auth/register" className={styles.optionCard}>
             <h3>Register</h3>
