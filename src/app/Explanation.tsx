@@ -35,17 +35,35 @@ export default function Explanation() {
             </p>
 
         )}
-        { isAuthenticated === true ? (
-            <p>
-                This login form uses the same modern technologies as our registration form. We use{" "}
-                <strong>React Hook Form</strong> for efficient form state management and{" "}
-                <strong>Yup</strong> for schema-based validation. Please enter your credentials to access your account.
-            </p>
-        ) : (
-            <p>
-                First you need to register! :)
-            </p>
-        )}
+        { pathname === "/auth" &&(
+
+             isAuthenticated === true ? (
+                <section className={styles.authExplanation}>
+                <h2>How Authentication Works</h2>
+                <p>
+                  <strong>Backend:</strong> Our Flask API handles user registration
+                  and login. Upon login, it validates your credentials, generates a JWT,
+                  and securely stores it in an HTTP-only cookie.
+                </p>
+                <p>
+                  <strong>Frontend:</strong> Our Next.js app uses React Hook Form and
+                  Yup for efficient form management and validation. Global authentication
+                  state is managed via React Context, enabling smooth navigation and
+                  route protection.
+                </p>
+                <p>
+                  <strong>Security:</strong> CORS and secure cookie settings are in place
+                  to protect your data. The system leverages modern best practices to minimize
+                  vulnerabilities.
+                </p>
+              </section>
+            ) : (
+                <p>
+                    First you need to register! :)
+                </p>
+            )
+
+          )}
         
         
       </section>

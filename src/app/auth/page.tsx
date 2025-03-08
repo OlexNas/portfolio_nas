@@ -20,7 +20,7 @@ export default function AuthLanding() {
       </Head>
       <main className={styles.main}>
         <h1>Authentication System</h1>
-        {isAuthenticated && <p>You are already authenticated.</p>}
+        {isAuthenticated && <p>You are authenticated.</p>}
        { !isAuthenticated && ( <p>
           Welcome to the authentication system. Please choose an option below to either register for a new account or log in to an existing one.
         </p>)}
