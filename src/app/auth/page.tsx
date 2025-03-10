@@ -24,7 +24,9 @@ export default function AuthLanding() {
        { !isAuthenticated && ( <p>
           Welcome to the authentication system. Please choose an option below to either register for a new account or log in to an existing one.
         </p>)}
-        <div className={styles.options}>
+        
+        { !isAuthenticated ? (
+          <div className={styles.options}>
           <Link href="/auth/register" className={styles.optionCard}>
             <h3>Register</h3>
           </Link>
@@ -32,6 +34,13 @@ export default function AuthLanding() {
             <h3>Login</h3>
           </Link>
         </div>
+        ) : (
+          <div className={styles.options}>
+            <Link href="/" className={styles.optionCard}>
+              <h3>Lets discover other projects :)</h3>
+            </Link>
+          </div>
+        )}
       </main>
     </>
   );
